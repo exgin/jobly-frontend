@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { BASE_TOKEN } from './App'; // destructing {} fixes our "JoblyAPI token null"
+import { URL } from './config';
 
 /**
  * Similar to how the model classes in /backend interact with the database, but we don't have SQL statements everywhere
@@ -15,11 +16,11 @@ class JoblyAPI {
     let link;
 
     if (verb === 'get') {
-      link = axios.get(`http://localhost:3001/${endpoint}`, { params: { _token, ...data } });
+      link = axios.get(`${URL}/${endpoint}`, { params: { _token, ...data } });
     } else if (verb === 'post') {
-      link = axios.post(`http://localhost:3001/${endpoint}`, { _token, ...data });
+      link = axios.post(`${URL}/${endpoint}`, { _token, ...data });
     } else if (verb === 'patch') {
-      link = axios.patch(`http://localhost:3001/${endpoint}`, { _token, ...data });
+      link = axios.patch(`${URL}/${endpoint}`, { _token, ...data });
     }
 
     try {
