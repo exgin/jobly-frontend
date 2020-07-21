@@ -10,7 +10,7 @@ class JoblyAPI {
   static async request(endpoint, data = {}, verb = 'get') {
     let _token = localStorage.getItem(BASE_TOKEN);
 
-    console.log('API Call:', endpoint, data, verb);
+    // console.log('API Call:', endpoint, data, verb);
 
     // include the token in the request
     let link;
@@ -26,7 +26,7 @@ class JoblyAPI {
     try {
       return (await link).data;
     } catch (error) {
-      console.error('API Error:', error.response);
+      // console.error('API Error:', error.response);
       let message = error.response.data.message;
       throw Array.isArray(message) ? message : [message];
     }
@@ -49,25 +49,21 @@ class JoblyAPI {
 
   static async register(data) {
     let res = await this.request(`users`, data, 'post');
-    console.log('REG HIT');
     return res.token;
   }
 
   static async login(data) {
     let res = await this.request(`login`, data, 'post');
-    console.log('LOGIN HIT');
     return res.token;
   }
 
   static async getCurrentUser(username) {
     let res = await this.request(`users/${username}`);
-    console.log(`GET USER HIT`);
     return res.user;
   }
 
   static async saveUserProfile(username, data) {
     let res = await this.request(`users/${username}`, data, 'patch');
-    console.log(`SAVE USER HIT`);
     return res.user;
   }
 
@@ -78,7 +74,6 @@ class JoblyAPI {
 
   static async applyToJob(id) {
     let res = await this.request(`jobs/${id}/apply`, {}, 'post');
-    console.log(`APPLY TO JOB HIT`);
     return res.message;
   }
 }
