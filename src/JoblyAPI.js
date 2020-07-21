@@ -7,7 +7,7 @@ import { BASE_TOKEN } from './App'; // destructing {} fixes our "JoblyAPI token 
 
 class JoblyAPI {
   static async request(endpoint, data = {}, verb = 'get') {
-    console.log(`Backend using:`, process.env.URL);
+    console.log(`Backend using:`, process.env.BACKEND_URL);
     let _token = localStorage.getItem(BASE_TOKEN);
 
     // console.log('API Call:', endpoint, data, verb);
@@ -16,11 +16,11 @@ class JoblyAPI {
     let link;
 
     if (verb === 'get') {
-      link = axios.get(`${process.env.URL}/${endpoint}`, { params: { _token, ...data } });
+      link = axios.get(`${process.env.BACKEND_URL}/${endpoint}`, { params: { _token, ...data } });
     } else if (verb === 'post') {
-      link = axios.post(`${process.env.URL}/${endpoint}`, { _token, ...data });
+      link = axios.post(`${process.env.BACKEND_URL}/${endpoint}`, { _token, ...data });
     } else if (verb === 'patch') {
-      link = axios.patch(`${process.env.URL}/${endpoint}`, { _token, ...data });
+      link = axios.patch(`${process.env.BACKEND_URL}/${endpoint}`, { _token, ...data });
     }
 
     try {
