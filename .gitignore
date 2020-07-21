@@ -6,6 +6,7 @@
 .pnp.js
 /.netlify
 /.env
+/.netlify.loml
 
 # testing
 /coverage
