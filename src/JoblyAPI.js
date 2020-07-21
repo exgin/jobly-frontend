@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BASE_TOKEN } from './App'; // destructing {} fixes our "JoblyAPI token null"
-import URL from './config';
+import { URL } from './config';
 
 /**
  * Similar to how the model classes in /backend interact with the database, but we don't have SQL statements everywhere
