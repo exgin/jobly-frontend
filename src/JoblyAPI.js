@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { BASE_TOKEN } from './App'; // destructing {} fixes our "JoblyAPI token null"
+import BACKEND_URL from './config';
 
 /**
  * Similar to how the model classes in /backend interact with the database, but we don't have SQL statements everywhere
@@ -7,7 +8,8 @@ import { BASE_TOKEN } from './App'; // destructing {} fixes our "JoblyAPI token 
 
 class JoblyAPI {
   static async request(endpoint, data = {}, verb = 'get') {
-    console.log(`Backend using:`, process.env.BACKEND_URL);
+    console.log(`Backend using:`, BACKEND_URL);
+
     let _token = localStorage.getItem(BASE_TOKEN);
 
     // console.log('API Call:', endpoint, data, verb);
@@ -16,9 +18,9 @@ class JoblyAPI {
     let link;
 
     if (verb === 'get') {
-      link = axios.get(`${process.env.BACKEND_URL}/${endpoint}`, { params: { _token, ...data } });
+      link = axios.get(`${BACKEND_URL}/${endpoint}`, { params: { _token, ...data } });
     } else if (verb === 'post') {
-      link = axios.post(`${process.env.BACKEND_URL}/${endpoint}`, { _token, ...data });
+      link = axios.post(`${BACKEND_URL}/${endpoint}`, { _token, ...data });
     } else if (verb === 'patch') {
       link = axios.patch(`${process.env.BACKEND_URL}/${endpoint}`, { _token, ...data });
     }
