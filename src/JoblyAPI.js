@@ -8,6 +8,7 @@ import { URL } from './config';
 
 class JoblyAPI {
   static async request(endpoint, data = {}, verb = 'get') {
+    console.log(URL);
     let _token = localStorage.getItem(BASE_TOKEN);
 
     // console.log('API Call:', endpoint, data, verb);
