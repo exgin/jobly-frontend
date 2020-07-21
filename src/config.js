@@ -9,6 +9,8 @@ module.exports = () => {
     return prev;
   }, {});
 
+  console.log(envKeys);
+
   return {
     plugins: [new webpack.DefinePlugin(envKeys)],
   };
