@@ -22,7 +22,7 @@ class JoblyAPI {
     } else if (verb === 'post') {
       link = axios.post(`${BACKEND_URL}/${endpoint}`, { _token, ...data });
     } else if (verb === 'patch') {
-      link = axios.patch(`${process.env.BACKEND_URL}/${endpoint}`, { _token, ...data });
+      link = axios.patch(`${BACKEND_URL}/${endpoint}`, { _token, ...data });
     }
 
     try {
