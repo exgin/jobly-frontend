@@ -3,11 +3,14 @@ import { BASE_TOKEN } from './App'; // destructing {} fixes our "JoblyAPI token 
 import { BACKEND_URL } from './config';
 
 /**
+ * TODO: Deploy on heroku tomorrow
+ *
  * Similar to how the model classes in /backend interact with the database, but we don't have SQL statements everywhere
  */
 
 class JoblyAPI {
   static async request(endpoint, data = {}, verb = 'get') {
+    console.log(process.env);
     console.log(`Backend using:`, BACKEND_URL);
 
     let _token = localStorage.getItem(BASE_TOKEN);
