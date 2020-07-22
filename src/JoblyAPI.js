@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BASE_TOKEN } from './App'; // destructing {} fixes our "JoblyAPI token null"
-import { BACKEND_URL } from './config';
+// import { BACKEND_URL } from './config';
 
 /**
  * TODO: Deploy on heroku tomorrow
@@ -11,7 +11,7 @@ import { BACKEND_URL } from './config';
 class JoblyAPI {
   static async request(endpoint, data = {}, verb = 'get') {
     console.log(process.env);
-    console.log(`Backend using:`, BACKEND_URL);
+    console.log(`Backend using:`, process.env.REACT_APP_BACKEND_URL);
 
     let _token = localStorage.getItem(BASE_TOKEN);
 
@@ -21,11 +21,11 @@ class JoblyAPI {
     let link;
 
     if (verb === 'get') {
-      link = axios.get(`${BACKEND_URL}/${endpoint}`, { params: { _token, ...data } });
+      link = axios.get(`${process.env.REACT_APP_BACKEND_URL}/${endpoint}`, { params: { _token, ...data } });
     } else if (verb === 'post') {
-      link = axios.post(`${BACKEND_URL}/${endpoint}`, { _token, ...data });
+      link = axios.post(`${process.env.REACT_APP_BACKEND_URL}/${endpoint}`, { _token, ...data });
     } else if (verb === 'patch') {
-      link = axios.patch(`${BACKEND_URL}/${endpoint}`, { _token, ...data });
+      link = axios.patch(`${process.env.REACT_APP_BACKEND_URL}/${endpoint}`, { _token, ...data });
     }
 
     try {
